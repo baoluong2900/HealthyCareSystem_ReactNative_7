@@ -22,7 +22,7 @@ export const login = async (values) => {
 export const signup = async (values) => {
     try {
         const response = await request({
-            url: '/user/register',
+            url: '/api/Register',
             method: 'post',
             data: values,
         });

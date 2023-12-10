@@ -30,7 +30,7 @@ import Login from './src/screens/Login';
 import Signup from './src/screens/Signup';
 import MyTab from './src/components/MyTab';
 
-
+export const UserContext = React.createContext();
 const Stack = createStackNavigator();
 const App = () => {
 

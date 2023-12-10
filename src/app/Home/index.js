@@ -14,7 +14,7 @@ const Home = ({ navigation }) => {
 
     useEffect(() => {
         (async () => {
-            const data = services;
+            const data1 = services;
           //  setServices(data);
         })();
     }, []);

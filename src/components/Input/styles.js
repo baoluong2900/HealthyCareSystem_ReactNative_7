@@ -20,7 +20,7 @@ export const styles = StyleSheet.create({
     },
     input: {
         paddingHorizontal: 16,
-        paddingVertical: 20,
+        paddingVertical: 10,
         flex: 1,
     },
     eye: {

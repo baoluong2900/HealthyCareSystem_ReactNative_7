@@ -25,6 +25,7 @@ const Profile = ({ navigation }) => {
     // }, []);
 
      const onLogout = () => {
+        console.log('hello')
         navigation.navigate('Login');
     };
     const onEditPress = () => {

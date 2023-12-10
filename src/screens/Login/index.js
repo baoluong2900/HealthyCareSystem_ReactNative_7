@@ -21,9 +21,9 @@ const Login = ({ navigation }) => {
     //     navigation.goBack();
     // };
 
-    // const onChange = (key, value) => {
-    //     setValues(v => ({ ...v, [key]: value }));
-    // };
+    const onChange = (key, value) => {
+        setValues(v => ({ ...v, [key]: value }));
+    };
 
     // const onSubmit = async () => {
     //     const token = await login(values);
@@ -31,7 +31,7 @@ const Login = ({ navigation }) => {
     //     setUser({ token });
     // };
     const onBack = () => {
-        navigation.goBack();
+        navigation.navigate('Home');
     };
 
     const onAppUser = () => {
@@ -43,7 +43,6 @@ const Login = ({ navigation }) => {
         <SafeAreaView>
             <ScrollView style={styles.container}>
                  <AuthHeader onBackPress={onBack}  title='Đăng nhập' /> 
-
                 <Input value={values.email} onChangeText={v => onChange('email', v)} label='Email' placeholder='example@gmail.com' />
                 <Input value={values.password} onChangeText={v => onChange('password', v)} isPassword label='Mật khẩu' placeholder='*******' />
 

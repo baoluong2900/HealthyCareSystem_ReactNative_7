@@ -21,7 +21,7 @@ const MyListings = ({ navigation }) => {
   //     );
   // };
   const data = [
-    { id: 1, name: "Item 1" },
+    { id: 1, name: "Item 1 123" },
     { id: 2, name: "Item 2" },
     // ...
   ];
