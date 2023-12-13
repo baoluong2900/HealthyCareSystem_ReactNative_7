@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState,useEffect  } from 'react';
 import { Image, Linking, Pressable, ScrollView, Text, View } from 'react-native';
 import { styles } from './styles';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -7,42 +7,37 @@ import Header from '../../components/Header';
 import ListItem from '../../components/ListItem';
 import EditableBox from '../../components/EditableBox';
 import Button from '../../components/Button';
+import {updateUser} from '../../utils/backendCallAPIs';
 
 // import { getProfile } from '../../../utils/backendCalls';
 // import { ProfileContext } from '../../../../App';
 
-const Profile = ({ navigation }) => {
-    // const num = 10;
-    // const { profile, setProfile } = useContext(ProfileContext);
-    // const [editing, setEditing] = useState(false);
-    let values = null;
-    // useEffect(() => {
-    //     (async () => {
-    //         const data = await getProfile();
+const Profile = ({ route }) => {
+    const [editing, setEditing] = useState(false);
+    const [user, setValues] = React.useState(null);
+    useEffect(() => {
+        setValues(route.params?.data);
+    }, [route.params?.data]);
 
-    //         setProfile(data);
-    //     })();
-    // }, []);
-
-     const onLogout = () => {
-        console.log('hello')
+    const onLogout = () => {
         navigation.navigate('Login');
     };
     const onEditPress = () => {
-        // setEditing(true);
+        setEditing(!editing);
     };
-    let editing = false;
 
     const onSave = async () => {
-        // const updatedProfile = await updateProfile(values);
-        // setProfile(updatedProfile);
-        // setEditing(false);
+        const result = await updateUser(user.userId,user);
+        if(result){
+            console.log('cập nhật oke rồi nè')
+        }
+        setEditing(!editing);
     };
     const onItemPress = () => {
         Linking.openURL('https://google.com');
     };
     const onChange = (key, value) => {
-        // setValues(v => ({ ...v, [key]: value }));
+        setValues(v => ({ ...v, [key]: value }));
     };
 
 
@@ -56,10 +51,17 @@ const Profile = ({ navigation }) => {
                         <Image style={styles.icon} source={require('../../images/edit.png')} />
                     </Pressable>
                 </View>
-                <EditableBox label='Họ và tên' onChangeText={v => onChange('fullName', v)} value={'hello'}  />
-                <EditableBox label='Email' onChangeText={v => onChange('email', v)} value={'hello@gmail.com'}  />
+                <EditableBox label='Họ' onChangeText={v => onChange('lastName', v)} value={user?.lastName} editable={editing} 
+                
+                 />
+                 <EditableBox label='Tên' onChangeText={v => onChange('firstName', v)} value={user?.firstName} editable={editing} 
+                
+                />
+                <EditableBox label='Email' onChangeText={v => onChange('email', v)} value={user?.email} 
+                editable={editing} 
+                 />
                 {editing ? (
-                    <Button style={styles.button} onPress={onSave} title='Save' />
+                    <Button style={styles.button} onPress={onSave} title='Lưu thông tin' />
                 ) : null}
 
                 <Text style={[styles.sectionTitle, { marginTop: 40 }]}>Trung tâm hỗ trợ</Text>
@@ -67,7 +69,7 @@ const Profile = ({ navigation }) => {
                 <ListItem onPress={onItemPress} style={styles.item} title='Liên hệ với chúng tôi' />
                 <ListItem onPress={onItemPress} style={styles.item} title='Quyền riêng tư & Điều khoản' />
             </ScrollView>
-            <Button  onPress={onLogout}  style={styles.buttonLogout} title='Đăng xuất' />
+            {/* <Button  onPress={onLogout}  style={styles.buttonLogout} title='Đăng xuất' /> */}
         </SafeAreaView>
     );
 };

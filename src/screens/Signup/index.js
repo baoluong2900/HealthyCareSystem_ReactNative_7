@@ -8,45 +8,15 @@ import Separator from '../../components/Separator';
 import GoogleLogin from '../../components/GoogleLogin';
 import styles from './styles';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { signup } from '../../../utils/backendCalls';
-import axios from 'axios';
-
-
-//function callAPI(data) {
-  // return axios.post('https://localhost:44370/api/Register', data)
-  //   .then(response => {
-  //     console.log(response.data);
-  //     return response.data;
-  //   })
-  //   .catch(error => console.error(error));
-//}
-// function callAPI() {
-//   return fetch('http://192.168.1.12:2030/WeatherForecast')
-//     .then(response => response.json())
-//     .then(data => {
-//       console.log(data);
-//       return data;
-//     })
-//     .catch(error => console.error(error));
-// }
-
-function callAPI() {
-  return axios.get('http://192.168.1.12:2030/WeatherForecast')
-    .then(response => {
-      console.log(response.data);
-      return response.data;
-    })
-    .catch(error => console.error(error));
-}
+import {registerUser} from '../../utils/backendCallAPIs';
 
 const Signup = ({ navigation }) => {
   const [checked, setChecked] = useState(true);
   const [values, setValues] = useState({});
-  // const { setUser } = useContext(UserContext);
+
   const onSignIn = () => {
     navigation.navigate("Login");
   };
-  callAPI();
   const onBack = () => {
     navigation.goBack();
   };
@@ -71,24 +41,22 @@ const Signup = ({ navigation }) => {
         Alert.alert('Vui lòng chọn điều khoản');
         return;
       }
-
-      // let token = await signup(values);
       // setUser({ token });
-      const test = callAPI(values);
-
-      Alert.alert('Đăng ký thành công');
-      // setValues({});
-    // /  setChecked(false)
+      const messageRegisterUser = await registerUser(values);
+      Alert.alert(messageRegisterUser);
+      console.log(messageRegisterUser);
+      setValues({});
+      setChecked(false)
     } catch (error) {
-      console.log('error :>> ', error);
+      console.log('error :>> ', messageRegisterUser);
     }
   };
   return (
     <SafeAreaView>
       <ScrollView style={styles.container}>
         <AuthHeader onBackPress={onBack} title='Đăng ký' />
-        <Input value={values.lastName} onChangeText={v => onChange('lastName', v)} label='Họ' placeholder='Nguyễn ' />
         <Input value={values.firstName} onChangeText={v => onChange('firstName', v)} label='Tên' placeholder='Văn A' />
+        <Input value={values.lastName} onChangeText={v => onChange('lastName', v)} label='Họ' placeholder='Nguyễn ' />
         <Input value={values.email} onChangeText={v => onChange('email', v)} label='Email' placeholder='example@gmail.com' />
         <Input value={values.password} onChangeText={v => onChange('password', v)} isPassword label='Mật khẩu' placeholder='*******' />
         <Input value={values.confirmPassword} onChangeText={v => onChange('confirmPassword', v)} isPassword label='Nhập lại mật khẩu' placeholder='*******' />
