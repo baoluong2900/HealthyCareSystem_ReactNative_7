@@ -29,7 +29,7 @@ import Splash from './src/screens/Splash';
 import Login from './src/screens/Login';
 import Signup from './src/screens/Signup';
 import MyTab from './src/components/MyTab';
-
+import ServiceDetails from './src/app/ServiceDetails';
 export const UserContext = React.createContext();
 const Stack = createStackNavigator();
 const App = () => {
@@ -37,10 +37,13 @@ const App = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
+
       <Stack.Screen name="Home" component={Splash} options={{ headerShown: false}} />
       <Stack.Screen name="Login" component={Login}  options={{ headerShown: false}} />
       <Stack.Screen name="Signup" component={Signup}  options={{ headerShown: false}} /> 
       <Stack.Screen name="MyTab" component={MyTab}  options={{ headerShown: false}} /> 
+      <Stack.Screen name="test" component={ServiceDetails}  options={{ headerShown: false}} /> 
+     
       </Stack.Navigator>
     </NavigationContainer>
   );

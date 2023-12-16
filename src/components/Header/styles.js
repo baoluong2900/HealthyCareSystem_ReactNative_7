@@ -10,6 +10,7 @@ export const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'space-between',
         marginVertical: 8,
+        
     },
     title: {
         color: colors.black,

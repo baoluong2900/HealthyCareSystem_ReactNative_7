@@ -2,53 +2,28 @@ import React, { useState, useEffect, useContext } from 'react';
 import { FlatList, View } from 'react-native';
 import styles from './styles';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { services } from '../../data/services';
+// import { services } from '../../data/services';
 import ServiceHomeItem from '../../components/ServiceHomeItem';
 import Header from '../../components/Header'; 
 
-const Home = ({ navigation }) => {
-    const [selectedCategory, setSelectedCategory] = useState();
+const Home = ({ route ,navigation }) => {
     const [keyword, setKeyword] = useState();
-    // const [filteredServices, setFilteredServices] = useState(services);
-    // const { services, setServices } = useContext(ServicesContext);
-
+    const [filteredServices, setFilteredServices] = useState(route.params?.data?.services);
+    const [services, setServices] = useState(route.params?.data?.services);
     useEffect(() => {
-        (async () => {
-            const data1 = services;
-          //  setServices(data);
-        })();
-    }, []);
+        if(keyword?.trim()) {
+            const searchService = services.filter(x => x?.serviceName?.trim()?.toLowerCase().includes(keyword?.trim()?.toLowerCase()));
+            setFilteredServices(searchService);
+        }
+        else {
+            setFilteredServices(services);
+        }
 
-    // useEffect(() => {
-    //     if (selectedCategory && !keyword) {
-    //         const updatedServices = services.filter(service => String(service?.category) === String(selectedCategory));
-    //         setFilteredServices(updatedServices);
-    //     } else if (selectedCategory && keyword) {
-    //         const updatedServices = services.filter(service => String(service?.category) === String(selectedCategory) && service?.title?.toLowerCase().includes(keyword?.toLowerCase()));
-    //         setFilteredServices(updatedServices);
-    //     } else if (!selectedCategory && keyword) {
-    //         const updatedServices = services.filter(service => service?.title?.toLowerCase().includes(keyword?.toLowerCase()));
-    //         setFilteredServices(updatedServices);
-    //     } else if (!keyword && !selectedCategory) {
-    //         setFilteredServices(services);
-    //     }
-    // }, [selectedCategory, keyword, services]);
-
-    // const renderCategoryItem = ({ item, index }) => {
-    //     return (
-    //         <CategoryBox
-    //             onPress={() => setSelectedCategory(item?.id)}
-    //             isSelected={item?.id === selectedCategory}
-    //             isFirst={index === 0}
-    //             title={item?.title}
-    //             image={item?.image}
-    //         />
-    //     );
-    // };
-
+    }, [keyword, services]);
     const renderServiceItem = ({ item }) => {
         const onServicePress = (Service) => {
-            navigation.navigate('ServiceDetails', { Service });
+            console.log(Service);
+            navigation.navigate('test', { Service });
         };
 
         return (
@@ -64,10 +39,10 @@ const Home = ({ navigation }) => {
             <FlatList
                 style={styles.servicesList}
                 numColumns={2}
-              //  data={filteredServices}
-                data = {services}
+            //    data={services}
+                data = {filteredServices}
                 renderItem={renderServiceItem}
-                keyExtractor={item => String(item._id)}
+                keyExtractor={item => String(item?.serviceId)}
                 ListFooterComponent={<View style={{ height: 200 }} />}
             />
         </SafeAreaView>

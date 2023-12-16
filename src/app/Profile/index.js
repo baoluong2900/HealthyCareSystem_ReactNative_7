@@ -12,7 +12,7 @@ import {updateUser} from '../../utils/backendCallAPIs';
 // import { getProfile } from '../../../utils/backendCalls';
 // import { ProfileContext } from '../../../../App';
 
-const Profile = ({ route }) => {
+const Profile = ({ route ,navigation}) => {
     const [editing, setEditing] = useState(false);
     const [user, setValues] = React.useState(null);
     useEffect(() => {
@@ -40,9 +40,8 @@ const Profile = ({ route }) => {
         setValues(v => ({ ...v, [key]: value }));
     };
 
-
     return (
-        <SafeAreaView style={{ flex: 1 }}>
+        <SafeAreaView style={styles?.background}>
             <Header title='Hồ sơ' />
             <ScrollView style={styles.container}>
                 <View style={styles.sectionHeader}>
@@ -69,7 +68,7 @@ const Profile = ({ route }) => {
                 <ListItem onPress={onItemPress} style={styles.item} title='Liên hệ với chúng tôi' />
                 <ListItem onPress={onItemPress} style={styles.item} title='Quyền riêng tư & Điều khoản' />
             </ScrollView>
-            {/* <Button  onPress={onLogout}  style={styles.buttonLogout} title='Đăng xuất' /> */}
+            <Button  onPress={onLogout}  style={styles.buttonLogout} title='Đăng xuất' />
         </SafeAreaView>
     );
 };

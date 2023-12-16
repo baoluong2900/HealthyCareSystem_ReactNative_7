@@ -1,9 +1,10 @@
 import axios from 'axios';
 
+const configAPI = 'https://healthcaresystem20231211232135.azurewebsites.net/';
+
 export const callAPI =() =>{
-    return axios.get('https://healthcaresystem20231211232135.azurewebsites.net/api/Locations')
+    return axios.get(configAPI+'api/Locations')
     .then(response => {
-      console.log(response.data);
       return response.data;
     })
     .catch(error => console.error(error));
@@ -11,8 +12,7 @@ export const callAPI =() =>{
 
 export const registerUser = async (user) => {
   try {
-    const response = await axios.post('https://healthcaresystem20231211232135.azurewebsites.net/api/Register', user);
-    console.log(response.data);
+    const response = await axios.post(configAPI+'api/Accounts/register', user);
     return response.data;
   } catch (error) {
     console.error(error);
@@ -20,8 +20,7 @@ export const registerUser = async (user) => {
 };
 export const loginUser = async (user) => {
   try {
-    const response = await axios.post('https://healthcaresystem20231211232135.azurewebsites.net/api/Login', user);
-    console.log(response.data);
+    const response = await axios.post(configAPI+'api/Accounts/login', user);
     return response.data;
   } catch (error) {
     console.error(error);
@@ -29,8 +28,7 @@ export const loginUser = async (user) => {
 };
 export const updateUser = async (userId, user) => {
   try {
-    const response = await axios.put('https://healthcaresystem20231211232135.azurewebsites.net/api/Users/'+userId, user);
-    console.log(response.data);
+    const response = await axios.put(configAPI+'api/Users/'+userId, user);
   } catch (error) {
     console.error(error);
   }

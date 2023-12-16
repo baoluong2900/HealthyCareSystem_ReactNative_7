@@ -9,8 +9,7 @@ const Tabs = createBottomTabNavigator();
 
 const MyTab = ({ route }) => {
 
-  const user = route?.params?.data;
-
+  const dataLogin = route?.params?.data;
   return (
     <Tabs.Navigator>
       <Tabs.Screen name="Trang chủ" component={Home} options={{
@@ -21,7 +20,10 @@ const MyTab = ({ route }) => {
             style={{ width: 24, height: 24 }}
           />
         ),
-      }} />
+      }} 
+      initialParams={{ data: dataLogin }}
+
+      />
 
       <Tabs.Screen name="Danh sách đăng ký" component={MyListings} options={{
         headerShown: false,
@@ -45,7 +47,7 @@ const MyTab = ({ route }) => {
             />
           ),
         }}
-        initialParams={{ data: user }}
+        initialParams={{ data: dataLogin.user }}
       />
     </Tabs.Navigator>
   );

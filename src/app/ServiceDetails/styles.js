@@ -1,11 +1,12 @@
 import { Dimensions, StyleSheet } from 'react-native';
-import { colors } from '../../../utils/colors';
+import { colors } from '../../utils/colors';
 
 const { height } = Dimensions.get('window');
 
 export const styles = StyleSheet.create({
     safe: {
         flex: 1,
+        backgroundColor: colors.white,
     },
     footer: {
         padding: 24,
@@ -20,21 +21,26 @@ export const styles = StyleSheet.create({
         backgroundColor: colors.lightGrey,
     },
     content: {
-        backgroundColor: colors.white,
+       backgroundColor: colors.white,
         borderTopLeftRadius: 16,
         borderTopRightRadius: 16,
-        marginTop: -40,
+        marginTop: -20,
         paddingHorizontal: 24,
     },
     title: {
-        marginTop: 40,
-        fontSize: 24,
+        marginTop: 15,
+        fontSize: 20,
         fontWeight: '500',
     },
     price: {
-        fontSize: 30,
+        fontSize: 20,
         fontWeight: 'bold',
         marginVertical: 8,
+    },
+    rating: {
+        marginTop: 5,
+        paddingVertical: 2,
+        alignSelf: 'flex-start'
     },
     description: {
         color: colors.textGrey,
@@ -58,6 +64,9 @@ export const styles = StyleSheet.create({
         borderRadius: 8,
         marginRight: 16,
         position: 'absolute',
+    },
+    viewButton: {
+        flex: 1,
     },
     backIcon: {
         width: 20,

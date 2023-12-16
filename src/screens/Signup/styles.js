@@ -4,6 +4,7 @@ import { colors } from '../../utils/colors';
 export const styles = StyleSheet.create({
     container: {
         padding: 24,
+        backgroundColor: colors.white,
     },
     agreeRow: {
         flexDirection: 'row',
@@ -26,6 +27,9 @@ export const styles = StyleSheet.create({
     },
     footerLink: {
         fontWeight: 'bold',
+    },
+    radioSpacing: {
+        paddingBottom: 10,
     }
 });
 export default styles;

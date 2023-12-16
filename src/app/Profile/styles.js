@@ -2,8 +2,13 @@ import { StyleSheet } from 'react-native';
 import { colors } from '../../utils/colors';
 
 export const styles = StyleSheet.create({
+    background: {
+        backgroundColor: colors.white,
+        flex: 1
+    },
     container: {
         padding: 24,
+       
     },
     item: {
         paddingVertical: 8,

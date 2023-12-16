@@ -35,7 +35,7 @@ const Login = ({ navigation }) => {
             //   setChecked(false)
             let response = await loginUser(values);
             if(response?.user) {
-               navigation.navigate('MyTab', { data: response?.user });
+               navigation.navigate('MyTab', { data: response });
             }
             else {
                 Alert.alert(response?.showMessages);
