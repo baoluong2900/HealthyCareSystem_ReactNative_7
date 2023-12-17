@@ -7,12 +7,11 @@ import MyListings from '../../app/MyListings';
 import Profile from '../../app/Profile';
 const Tabs = createBottomTabNavigator();
 
-const MyTab = ({ route }) => {
-  const dataLogin = route?.params?.data;
-  console.log('đây là người dùng');
+const AdminTab = ({ route }) => {
+  console.log('đây là admin')
   return (
     <Tabs.Navigator>
-      <Tabs.Screen name="Trang chủ" component={Home} options={{
+      <Tabs.Screen name="Duyệt tài khoản" component={Home} options={{
         headerShown: false,
         tabBarIcon: ({ focused, color }) => (
           <Image
@@ -21,10 +20,10 @@ const MyTab = ({ route }) => {
           />
         ),
       }} 
-      initialParams={{ data: dataLogin }}
+
 
       />
-      <Tabs.Screen name="Danh sách đăng ký" component={MyListings} options={{
+      <Tabs.Screen name="hello" component={MyListings} options={{
         headerShown: false,
         tabBarIcon: ({ focused, color }) => (
           <Image
@@ -33,7 +32,6 @@ const MyTab = ({ route }) => {
           />
         ),
       }} 
-      initialParams={{ data: dataLogin?.user?.userId }}
       />
 
       <Tabs.Screen
@@ -48,10 +46,10 @@ const MyTab = ({ route }) => {
             />
           ),
         }}
-        initialParams={{ data: dataLogin.user }}
+       
       />
     </Tabs.Navigator>
   );
 };
 
-export default React.memo(MyTab);
+export default React.memo(AdminTab);

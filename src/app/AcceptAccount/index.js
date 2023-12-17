@@ -4,9 +4,6 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 import Header from '../../components/Header';
 // import { ProfileContext, ServicesContext } from '../../../../App';
 import {getAppointmentByUserID,deleteAppointmentByUserID} from '../../utils/backendCallAPIs';
-
-
-
 import FavoriteItem from '../../components/FavoriteItem';
 import {styles} from './styles';
 import { useFocusEffect } from '@react-navigation/native';
@@ -22,7 +19,7 @@ const getListAppointment = async userID => {
   }
 };
 
-const MyListings = ({route, navigation}) => {
+const AcceptAccount = ({route, navigation}) => {
   const [userID, setUserID] = useState(route?.params?.data);
   const [appointments, setAppointments] = useState([]);
 
@@ -95,4 +92,4 @@ const MyListings = ({route, navigation}) => {
   );
 };
 
-export default React.memo(MyListings);
+export default React.memo(AcceptAccount);

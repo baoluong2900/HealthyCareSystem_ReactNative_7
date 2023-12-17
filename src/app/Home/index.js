@@ -10,6 +10,7 @@ const Home = ({ route ,navigation }) => {
     const [keyword, setKeyword] = useState();
     const [filteredServices, setFilteredServices] = useState(route.params?.data?.services);
     const [services, setServices] = useState(route.params?.data?.services);
+    const [userID, setUserID] = useState(route.params?.data?.user?.userId);
     useEffect(() => {
         if(keyword?.trim()) {
             const searchService = services.filter(x => x?.serviceName?.trim()?.toLowerCase().includes(keyword?.trim()?.toLowerCase()));
@@ -22,8 +23,7 @@ const Home = ({ route ,navigation }) => {
     }, [keyword, services]);
     const renderServiceItem = ({ item }) => {
         const onServicePress = (Service) => {
-            console.log(Service);
-            navigation.navigate('test', { Service });
+            navigation.navigate('Detail', { Service,userID });
         };
 
         return (
@@ -34,12 +34,9 @@ const Home = ({ route ,navigation }) => {
     return (
         <SafeAreaView>
             <Header showSearch onSearch={setKeyword} keyword={keyword} title='Tìm kiếm dịch vụ' />
-
-
             <FlatList
                 style={styles.servicesList}
                 numColumns={2}
-            //    data={services}
                 data = {filteredServices}
                 renderItem={renderServiceItem}
                 keyExtractor={item => String(item?.serviceId)}

@@ -25,3 +25,71 @@ export const categories = [
     },
     
 ];
+export const paymenths = [
+    {
+        id: 1,
+        title: 'Thanh toán tiền mặt',
+    },
+    {
+        id: 2,
+        title: 'Chuyển khoản qua ngân hàng',
+
+    },
+    {
+        id: 3,
+        title: 'Thanh toán qua momo',
+
+    },
+];
+export const status = [
+    {
+        id: 0,
+        title: 'Đang chờ xác nhận',
+    },
+    {
+        id: 1,
+        title: 'Đã xác nhận',
+    },
+    {
+        id: 2,
+        title: 'Đang thực hiện',
+
+    },
+    {
+        id: 3,
+        title: 'Hoàn tất',
+
+    },
+    {
+        id: 99,
+        title: 'Hủy',
+
+    },
+];
+
+export const statusCbx = [
+    {
+        id: 0,
+        title: 'Chờ xác nhận',
+    },
+    {
+        id: 1,
+        title: 'Đã xác nhận',
+    },
+    {
+        id: 2,
+        title: 'Đang thực hiện',
+
+    },
+    {
+        id: 3,
+        title: 'Hoàn tất',
+
+    },
+    {
+        id: 99,
+        title: 'Hủy',
+
+    },
+];
+

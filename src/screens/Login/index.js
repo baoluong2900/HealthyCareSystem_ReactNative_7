@@ -18,6 +18,11 @@ const Login = ({ navigation }) => {
 
     const onLogin = async () => {
         try {
+            if(values?.userName === 'admin' && values.passWord === 'admin') {
+                navigation.navigate('AdminTab', { data: response });
+                return;
+            }
+
             if (!values?.userName) {
                 Alert.alert('Tài khoản đăng nhập không được phép bỏ trống');
                 return;
@@ -34,13 +39,24 @@ const Login = ({ navigation }) => {
             //   setValues({});
             //   setChecked(false)
             let response = await loginUser(values);
+            if(!response.isLoggedIn) {
+                Alert.alert(response?.showMessages);
+                return;
+            }
             if(response?.user) {
-               navigation.navigate('MyTab', { data: response });
+                console.log(response?.user);
+                if(response?.user?.userRoleNo == 1) {
+                    navigation.navigate('StaffTab', { data: response });
+                    
+                }
+                else {
+                    navigation.navigate('MyTab', { data: response });
+                }
+
             }
             else {
                 Alert.alert(response?.showMessages);
             }
-         //   navigation.navigate('MyTab');
         } catch (error) {
             console.log('error :>> ', error);
         }

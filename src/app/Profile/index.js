@@ -2,7 +2,7 @@ import React, { useContext, useState,useEffect  } from 'react';
 import { Image, Linking, Pressable, ScrollView, Text, View } from 'react-native';
 import { styles } from './styles';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import Header from '../../components/Header'; 
+import Header from '../../components/Header';
 
 import ListItem from '../../components/ListItem';
 import EditableBox from '../../components/EditableBox';
@@ -18,7 +18,6 @@ const Profile = ({ route ,navigation}) => {
     useEffect(() => {
         setValues(route.params?.data);
     }, [route.params?.data]);
-
     const onLogout = () => {
         navigation.navigate('Login');
     };

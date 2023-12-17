@@ -28,6 +28,8 @@ const Input = ({ label, type, options, isPassword, value, onChangeText, placehol
 
                     <Image style={styles.arrow} source={require('../../images/arrow.png')} />
                 </Pressable>
+
+
             ) : (
                 <View style={styles.inputContainer}>
                     <TextInput placeholder={placeholder} value={value} onChangeText={onChangeText} secureTextEntry={isPassword && !isPasswordVisible} style={[styles.input, style]} {...props} />
@@ -43,7 +45,7 @@ const Input = ({ label, type, options, isPassword, value, onChangeText, placehol
             <Modal transparent visible={isPickerModalVisible}>
                 <TouchableOpacity activeOpacity={1} onPress={() => setPickerModalVisible(false)} style={styles.modalWrapper}>
                     <TouchableOpacity activeOpacity={1} style={styles.modalContent}>
-                        <Text style={styles.headerTitle}>Select options</Text>
+                        <Text style={styles.headerTitle}>Lựa chọn</Text>
 
                         {options?.map((opt) => {
                             if (!opt?.id) {

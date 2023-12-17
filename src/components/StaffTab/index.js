@@ -7,9 +7,9 @@ import MyListings from '../../app/MyListings';
 import Profile from '../../app/Profile';
 const Tabs = createBottomTabNavigator();
 
-const MyTab = ({ route }) => {
+const StaffTab = ({ route }) => {
   const dataLogin = route?.params?.data;
-  console.log('đây là người dùng');
+  console.log('đây là nhân viên');
   return (
     <Tabs.Navigator>
       <Tabs.Screen name="Trang chủ" component={Home} options={{
@@ -54,4 +54,4 @@ const MyTab = ({ route }) => {
   );
 };
 
-export default React.memo(MyTab);
+export default React.memo(StaffTab);

@@ -59,7 +59,7 @@ export const styles = StyleSheet.create({
     },
     optionText: {
         color: colors.black,
-        paddingVertical: 4,
+        paddingVertical: 10,
         fontSize: 15,
     },
     selectedOption: {
