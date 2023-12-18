@@ -2,8 +2,8 @@ import * as React from 'react';
 import { Text, View, Image } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import Home from '../../app/Home';
-import MyListings from '../../app/MyListings';
+import HomeStaff from '../../app/HomeStaff';
+import ViewService from '../../app/ViewService';
 import Profile from '../../app/Profile';
 const Tabs = createBottomTabNavigator();
 
@@ -12,19 +12,18 @@ const StaffTab = ({ route }) => {
   console.log('đây là nhân viên');
   return (
     <Tabs.Navigator>
-      <Tabs.Screen name="Trang chủ" component={Home} options={{
+      <Tabs.Screen name="Đơn đăng ký dịch vụ" component={HomeStaff} options={{
         headerShown: false,
         tabBarIcon: ({ focused, color }) => (
           <Image
-            source={focused ? require('../../images/tabs/home_active.png') : require('../../images/tabs/home.png')}
+          source={focused ? require('../../images/tabs/home_active.png') : require('../../images/tabs/home.png')}
             style={{ width: 24, height: 24 }}
           />
         ),
       }} 
-      initialParams={{ data: dataLogin }}
-
+      initialParams={{ data: dataLogin}}
       />
-      <Tabs.Screen name="Danh sách đăng ký" component={MyListings} options={{
+      <Tabs.Screen name="Quản lý dịch vụ" component={ViewService} options={{
         headerShown: false,
         tabBarIcon: ({ focused, color }) => (
           <Image
@@ -33,7 +32,7 @@ const StaffTab = ({ route }) => {
           />
         ),
       }} 
-      initialParams={{ data: dataLogin?.user?.userId }}
+      initialParams={{ data: dataLogin?.user?.staffId }}
       />
 
       <Tabs.Screen
@@ -48,7 +47,7 @@ const StaffTab = ({ route }) => {
             />
           ),
         }}
-        initialParams={{ data: dataLogin.user }}
+        initialParams={{ data: dataLogin.user }}   
       />
     </Tabs.Navigator>
   );

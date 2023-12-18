@@ -11,6 +11,7 @@ const Home = ({ route ,navigation }) => {
     const [filteredServices, setFilteredServices] = useState(route.params?.data?.services);
     const [services, setServices] = useState(route.params?.data?.services);
     const [userID, setUserID] = useState(route.params?.data?.user?.userId);
+    const [readonly, setReadonly] = useState(true);
     useEffect(() => {
         if(keyword?.trim()) {
             const searchService = services.filter(x => x?.serviceName?.trim()?.toLowerCase().includes(keyword?.trim()?.toLowerCase()));
@@ -23,7 +24,7 @@ const Home = ({ route ,navigation }) => {
     }, [keyword, services]);
     const renderServiceItem = ({ item }) => {
         const onServicePress = (Service) => {
-            navigation.navigate('Detail', { Service,userID });
+            navigation.navigate('Detail', { Service,userID,readonly });
         };
 
         return (

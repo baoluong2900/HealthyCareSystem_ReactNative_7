@@ -4,16 +4,13 @@ import styles from './styles';
 import Config from 'react-native-config';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import Button from '../../components/Button';
-import {Rating, AirbnbRating} from 'react-native-ratings';
-// import { updateService } from '/src/utils/backendCalls';
-// import { ServicesContext } from '/App';
+import {Rating} from 'react-native-ratings';
 
 const ServiceDetails = ({route, navigation}) => {
-  // const params = route?.params || {};
-  // const { services, setServices } = useContext(ServicesContext);
-  // const product = services?.find(service => service?._id === params?.product?._id);
   const [services, setServices] = useState(route?.params?.Service);
   const [userID, setUserID] = useState(route.params?.userID);
+  const [readonly, setReadonly] = useState(route.params?.readonly);
+  console.log(readonly);
   const onBackPress = () => {
     navigation.goBack();
   };
@@ -24,12 +21,8 @@ const ServiceDetails = ({route, navigation}) => {
   };
 
   const onOpenForm = async () => {
-    navigation.navigate('PopupAdd', { services,userID });
+    navigation.navigate('PopupAdd', {services, userID});
   };
-  const ratingCompleted = rating => {
-    console.log('Rating is: ' + rating);
-  };
-
   return (
     <SafeAreaView style={styles.safe}>
       <ScrollView style={styles.container}>
@@ -49,12 +42,24 @@ const ServiceDetails = ({route, navigation}) => {
           <Rating
             showRating={false}
             imageSize={15}
-            startingValue={5 / 3}
+            startingValue={5}
             style={styles.rating}
             readonly={true}
           />
           <Text style={styles.title}> {services?.serviceName}</Text>
-          <Text style={styles.price}>$ {services?.price}</Text>
+          <Text style={styles.description}>{services?.address}</Text>
+          <Text style={styles.description}>{services?.price.toLocaleString('en-US')} VNĐ</Text>
+          <Text style={styles.description}>
+            {'Làm việc: từ ' +
+              services?.startHours.toString() +
+              ':' +
+              services?.startMinitues.toString() +
+              ' đến ' +
+              services?.endHours.toString() +
+              ':' +
+              services?.endMinitues.toString()}
+          </Text>
+          <Text style={styles.title}>{'Mô tả dịch vụ:'}</Text>
           <Text style={styles.description}>{services?.description}</Text>
         </View>
         <Pressable onPress={onBackPress} style={styles.backContainer}>
@@ -66,15 +71,19 @@ const ServiceDetails = ({route, navigation}) => {
       </ScrollView>
 
       <View style={styles.footer}>
-        <Pressable onPress={onOpenForm} style={styles.bookmarkContainer}>
-          <Image
-            style={styles.bookmarkIcon}
-            source={require('../../images/bookmark_filled.png')}
-          />
-        </Pressable>
-        <View style={styles?.viewButton}>
-          <Button onPress={onContact} title="Liên hệ ngay" />
-        </View>
+        {readonly ? (
+          <Pressable onPress={onOpenForm} style={styles.bookmarkContainer}>
+            <Image
+              style={styles.bookmarkIcon}
+              source={require('../../images/bookmark_filled.png')}
+            />
+          </Pressable>
+        ) : null}
+        {readonly ? (
+          <View style={styles.viewButton}>
+            <Button onPress={onContact} title="Liên hệ ngay" />
+          </View>
+        ) : null}
       </View>
     </SafeAreaView>
   );

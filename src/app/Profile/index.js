@@ -8,7 +8,7 @@ import ListItem from '../../components/ListItem';
 import EditableBox from '../../components/EditableBox';
 import Button from '../../components/Button';
 import {updateUser} from '../../utils/backendCallAPIs';
-
+import {updateStaff} from '../../utils/backendCallAPIs';
 // import { getProfile } from '../../../utils/backendCalls';
 // import { ProfileContext } from '../../../../App';
 
@@ -24,12 +24,9 @@ const Profile = ({ route ,navigation}) => {
     const onEditPress = () => {
         setEditing(!editing);
     };
-
     const onSave = async () => {
-        const result = await updateUser(user.userId,user);
-        if(result){
-            console.log('cập nhật oke rồi nè')
-        }
+
+        const result = user.userRoleNo == 2 ? await updateUser(user.userId,user):await updateStaff(user.userId,user) ;
         setEditing(!editing);
     };
     const onItemPress = () => {
@@ -56,7 +53,7 @@ const Profile = ({ route ,navigation}) => {
                 
                 />
                 <EditableBox label='Email' onChangeText={v => onChange('email', v)} value={user?.email} 
-                editable={editing} 
+                editable={false}
                  />
                 {editing ? (
                     <Button style={styles.button} onPress={onSave} title='Lưu thông tin' />

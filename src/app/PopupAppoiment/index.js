@@ -32,6 +32,7 @@ const PopupAppoiment = ({route, navigation}) => {
   const goBack = () => {
     navigation.goBack();
   };
+
   const [date, setDate] = useState(new Date());
   const [category, setCategory] = useState({});
   const [showPicker, setShowPicker] = useState(false);

@@ -10,7 +10,7 @@ const ServiceHomeItem = ({ serviceName, price, image, onPress }) => {
           uri: 'https://reactnative.dev/img/tiny_logo.png',
         }} />
             <Text style={styles?.title}>{serviceName}</Text>
-            <Text style={styles.price}>$ {price}</Text>
+            <Text style={styles.price}>{price.toLocaleString('en-US')} VNĐ</Text>
         </Pressable>
     );
 };
