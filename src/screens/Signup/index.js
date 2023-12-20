@@ -43,6 +43,7 @@ const Signup = ({ navigation }) => {
         Alert.alert('Vui lòng chọn điều khoản');
         return;
       }
+      values.userRoleNo= userRoleNo;
       const user = await registerUser(values);
       Alert.alert(user.showMessages);
       if(user.isError) {
@@ -60,11 +61,7 @@ const Signup = ({ navigation }) => {
     { label: "Nhân viên chăm sóc y tế", value: 1 },
   ];
   const onChangeRadio = (value) => {
-    console.log(value);
-    setValues({
-      ...values,
-      userRoleNo: value,
-    });
+    setUserRoleNo(value)
   };
   
   return (
